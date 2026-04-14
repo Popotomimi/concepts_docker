@@ -34,3 +34,4 @@ jobs:
 
       - name: Build docker image
         run: docker build -t rocketseat-ci-api:latest .
+        working-directory: api
