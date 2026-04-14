@@ -35,7 +35,7 @@ jobs:
       - name: Generate tag
         id: generate_tag
         run: |
-          SHA=${echo $GITHUB_SHA | head -c7}
+          SHA=${GITHUB_SHA:0:7}
           echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       - name: Build docker image
