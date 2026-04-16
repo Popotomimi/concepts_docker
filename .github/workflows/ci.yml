@@ -44,9 +44,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build docker image
-        run: docker build -t popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }} .
-        working-directory: api
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./api
+          push: true
+          tags: popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }}, popotomimi/rocketseat-ci-api:latest
 
-      - name: Push image
-        run: docker push popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }}
+      # - name: Build docker image
+      #   run: docker build -t popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }} .
+      #   working-directory: api
+
+      # - name: Push image
+      #   run: docker push popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }}
