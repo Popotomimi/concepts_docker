@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   region  = "us-east-2"
-  profile = "default"
+  profile = "AdministratorAccess-388839923933"
 
   skip_metadata_api_check = true
 }
