@@ -51,6 +51,10 @@ jobs:
         id: login_ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Create ECR repository if not exists
+        run: |
+          aws ecr describe-repositories --repository-names rocketseat-ci-api --region us-east-2 || aws ecr create-repository --repository-name rocketseat-ci-api --region us-east-2
+
       - name: Build docker image
         env:
           REGISTRY: ${{ steps.login_ecr.outputs.registry }}
