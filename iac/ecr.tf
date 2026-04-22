@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "rocketseat-ci-api" {
-    name = "rocketseat-ci"
+    name = "rocketseat-ci-api"
     image_tag_mutability = "MUTABLE"
 
     image_scanning_configuration {

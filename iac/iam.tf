@@ -54,7 +54,9 @@ resource "aws_iam_role" "ecr-role" {
                         "ecr:InitiateLayerUpload",
                         "ecr:UploadLayerPart",
                         "ecr:CompleteLayerUpload",
-                        "ecr:GetAuthorizationToken"
+                        "ecr:GetAuthorizationToken",
+                        "ecr:DescribeRepositories",
+                        "ecr:CreateRepository"
                     ]
                     Effect = "Allow",
                     Resource = "*"
