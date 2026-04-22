@@ -52,7 +52,12 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build docker image
-        run: docker build -t Popotomimi/rocketseat-ci-api:${{ steps.generate_tag.outputs.sha }} .
+        env:
+          REGISTRY: ${{ steps.login_ecr.outputs.registry }}
+          TAG: ${{ steps.generate_tag.outputs.sha }}
+        run: |
+          docker build -t ${REGISTRY}/rocketseat-ci-api:${TAG} .
+          docker push ${REGISTRY}/rocketseat-ci-api:${TAG}
         working-directory: api
 
       ## - name: Login into the container registry
