@@ -63,8 +63,7 @@ jobs:
         run: |
           docker build -t ${REGISTRY}/rocketseat-ci-api:${TAG} .
           docker push ${REGISTRY}/rocketseat-ci-api:${TAG}
-          IMAGE=${echo ${REGISTRY}/rocketseat-ci-api:${TAG}}
-          echo "image=$IMAGE" >> $GITHUB_OUTPUT
+          echo "image=${REGISTRY}/rocketseat-ci-api:${TAG}" >> $GITHUB_OUTPUT
         working-directory: api
 
       - name: Deploy to App Runner
