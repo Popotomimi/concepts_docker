@@ -63,10 +63,13 @@ jobs:
         run: |
           docker build -t ${REGISTRY}/rocketseat-ci-api:${TAG} .
           docker push ${REGISTRY}/rocketseat-ci-api:${TAG}
+          docker tag ${REGISTRY}/rocketseat-ci-api:${TAG} ${REGISTRY}/rocketseat-ci-api:latest
+          docker push ${REGISTRY}/rocketseat-ci-api:latest
           echo "image=${REGISTRY}/rocketseat-ci-api:${TAG}" >> $GITHUB_OUTPUT
         working-directory: api
 
       - name: Deploy to App Runner
+        id: deploy-app-runner
         uses: awslabs/amazon-app-runner-deploy@main
         with:
           service: rocketseat-api
@@ -76,6 +79,7 @@ jobs:
           cpu: 1
           memory: 2
           port: 3000
+          wait-for-service-stability-seconds: 180
 
       ## - name: Login into the container registry
       ##  uses: docker/login-action@v3
