@@ -20,4 +20,4 @@ COPY --from=build /usr/src/app/node_modules ./node_modules
 
 EXPOSE 3000
 
-CMD ["yarn", "run", "start:prod"]
+CMD ["node", "dist/main"]
