@@ -35,6 +35,11 @@ jobs:
         run: yarn test
         working-directory: api
 
+      - name: Semantic Realease
+        uses: cycjimmy/semantic-realease-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Generate tag
         id: generate_tag
         run: |
